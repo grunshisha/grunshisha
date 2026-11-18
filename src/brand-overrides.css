@@ -48,3 +48,25 @@
 .nav-links a[href="#gallery"] {
   display: none !important;
 }
+
+/* A fine, low-contrast pigment grain gives the green surfaces a matte painted finish. */
+.site-shell,
+.story-section,
+.menu-section,
+.visit-section {
+  background-image:
+    radial-gradient(ellipse at 18% 22%, rgb(167 190 139 / 7%), transparent 48%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .72 0 0 0 0 .78 0 0 0 0 .67 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+  background-size: 100% 100%, 180px 180px !important;
+  background-repeat: no-repeat, repeat !important;
+}
+
+/* Preserve the textured surface on narrow screens without adding a heavy overlay. */
+@media (prefers-reduced-transparency: reduce) {
+  .site-shell,
+  .story-section,
+  .menu-section,
+  .visit-section {
+    background-image: radial-gradient(ellipse at 18% 22%, rgb(167 190 139 / 5%), transparent 48%) !important;
+  }
+}
