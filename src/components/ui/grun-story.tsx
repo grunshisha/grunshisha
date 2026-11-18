@@ -26,7 +26,7 @@ const copy = {
     heroKicker: "KYOTO · JAPAN", subtitle: "アラビアンシーシャとシルクロード喫茶",
     scroll: "GRÜNについて", philosophyLabel: "ひとつのフレーバーに、世界の物語を",
     philosophyTitle: "歴史と味わいを、いまへ。",
-    philosophyBody: "世界各地の文化や宮廷の厨房で育まれてきた、豊か��味わい。その歴史をたどり、シルクロードをはじめとする伝統に着想を得た、誠実で丁寧なブレンドをお届けします。",
+    philosophyBody: "世界各地の文化や宮廷の厨房で育まれてきた、豊かな味わい。その歴史をたどり、シルクロードをはじめとする伝統に着想を得た、誠実で丁寧なブレンドをお届けします。",
     craftLabel: "調べ、ブレンドし、丁寧に仕立てる",
     craftTitle: "GRÜNのシーシャづくり",
     craftBody: "シルクロード各地のフレーバーの歴史を探りながら、毎月新しいブレンドを研究しています。フレッシュ、フルーティー、スパイシー、フローラル、デザートの五つの方向から味わいを追求。エジプシャンボウルで、なめらかで豊かな、余韻の長い一服に仕上げます。",
@@ -42,7 +42,9 @@ export default function GrunStory({ language }: { language: Language }) {
   return (
     <div className="grun-story">
       <header className="story-header">
-        <a href="#home" className="story-wordmark" aria-label="GRÜN home">GRÜN</a>
+        <a href="#home" className="story-wordmark" aria-label="GRÜN home">
+          <img src={logo} alt="GRÜN" />
+        </a>
         <nav aria-label="Main navigation">
           <a href="#philosophy">{t.about}</a>
           <a href="#craft">{t.craft}</a>

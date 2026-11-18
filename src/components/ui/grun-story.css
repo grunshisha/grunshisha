@@ -17,7 +17,8 @@
   width: min(1240px, calc(100% - 64px)); height: 82px; display: flex; align-items: center;
   justify-content: space-between; color: white;
 }
-.story-wordmark { font-family: 'Noto Serif JP', serif; font-size: 24px; letter-spacing: .14em; }
+.story-wordmark { display: flex; align-items: center; width: 100px; }
+.story-wordmark img { display: block; width: 100%; height: auto; filter: brightness(0) invert(1); }
 .story-header nav { display: flex; align-items: center; gap: 34px; font-size: 12px; letter-spacing: .08em; }
 .story-header nav a, .story-actions a { transition: opacity .2s ease; }
 .story-header nav a:hover, .story-actions a:hover { opacity: .7; }
@@ -27,7 +28,7 @@
 }
 .story-hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgb(8 24 12 / 28%), transparent 50%, rgb(8 24 12 / 14%)); }
 .hero-brand-lockup { display: flex; flex-direction: column; align-items: center; padding: 100px 24px 40px; }
-.hero-logo { width: min(540px, 78vw); max-height: 38vh; object-fit: contain; filter: drop-shadow(0 5px 25px rgb(0 0 0 / 22%)); }
+.hero-logo { width: min(540px, 78vw); max-height: 38vh; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 5px 25px rgb(0 0 0 / 22%)); }
 .hero-brand-lockup > p { margin: 20px 0 0; font-family: 'Noto Serif JP', serif; font-size: clamp(17px, 2.4vw, 25px); letter-spacing: .12em; text-shadow: 0 2px 18px rgb(0 0 0 / 45%); }
 .hero-location { margin-top: 15px; font-size: 10px; letter-spacing: .28em; }
 .hero-scroll { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .16em; }
@@ -55,7 +56,7 @@
 .story-actions a { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgb(255 255 255 / 45%); border-radius: 2px; padding: 13px 18px; font-size: 12px; }
 @media (max-width: 700px) {
   .story-header { width: calc(100% - 36px); height: 70px; }
-  .story-wordmark { font-size: 21px; }
+  .story-wordmark { width: 88px; }
   .story-header nav { gap: 13px; font-size: 10px; }
   .story-header nav a { white-space: nowrap; }
   .story-hero { height: 100svh; min-height: 620px; }
