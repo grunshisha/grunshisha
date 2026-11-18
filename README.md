@@ -2,15 +2,23 @@
 
 Japanese-first, English-option website for GRÜN Arabic Shisha & Silk Road Kissa in Kyoto.
 
-The design uses the uploaded GRÜN logo and Google Maps photos stored in the repository. The main page is in `index.html` and requires no build step.
+The site now uses React, TypeScript, Vite, Tailwind CSS v4, and a shadcn-style component layout (`src/components/ui/`). It adapts the Cairn landing-page template's scenic hero, floating conversation card, editorial sections, and restrained motion to GRÜN's brand rather than retaining the original AI-product copy.
 
-## Assets
+## Run locally
 
-- `GRUN LOGO.png` — logo used in the header and footer
-- `Screenshot ...png` — venue photographs used in the hero, story, cards, and gallery
+```sh
+npm install
+npm run dev
+```
 
-## Before publishing
+Create a production build with `npm run build`; preview it with `npm run preview`.
 
-- Verify opening hours and current menu directly with the shop.
-- Confirm the Google Maps listing and booking process.
-- Replace the simple reservation fields with a real reservation system if desired.
+## Brand links and content
+
+- Main page component: `src/components/ui/grun-landing.tsx`
+- Japanese and English copy: `words` in that component
+- Brand color: Matt Imperial Green `#156125` in `src/index.css`
+- Instagram: `https://www.instagram.com/grun.kyoto/`
+- Google Maps link and venue photos remain linked from the repository assets.
+
+Confirm opening hours and current menu with the shop before publishing.
