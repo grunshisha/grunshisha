@@ -1,0 +1,7 @@
+/* Language control and map footer for the new story-led home page. */
+.story-language-switch { position: absolute; z-index: 10; top: 27px; right: max(32px, calc((100vw - 1240px) / 2)); display: flex; gap: 4px; color: white; }
+.story-language-switch button { border: 1px solid rgb(255 255 255 / 45%); background: rgb(12 35 19 / 25%); color: inherit; padding: 7px 9px; font-size: 10px; letter-spacing: .08em; cursor: pointer; }
+.story-language-switch button[aria-pressed="true"] { background: rgb(255 255 255 / 19%); }
+.story-map-section { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 64px 24px; background-color: #174b2b; color: #f5f2e9; }
+.story-map-section > p { margin: 0; font-size: 10px; letter-spacing: .22em; }
+@media (max-width: 700px) { .story-language-switch { top: 22px; right: 18px; } }
