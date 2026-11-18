@@ -1,0 +1,50 @@
+/* Brand and layout adjustments for the GRÜN landing page. */
+.story-section,
+.menu-section,
+.visit-section {
+  background: #104c1d !important;
+  color: #f8f7f2 !important;
+}
+
+.story-copy > p:not(.eyebrow),
+.menu-item p,
+.menu-note,
+.visit-copy,
+.visit-details dd {
+  color: #d7e3d6 !important;
+}
+
+.story-copy .text-link,
+.menu-number,
+.menu-mark,
+.visit-details dt {
+  color: #e4eee2 !important;
+}
+
+.menu-item,
+.visit-details,
+.visit-details > div {
+  border-color: rgb(255 255 255 / 22%) !important;
+}
+
+.solid-button {
+  background: #dce8d9 !important;
+  border-color: #dce8d9 !important;
+  color: #123f1d !important;
+}
+
+.solid-button:hover,
+.outline-button:hover {
+  background: #c8dbc5 !important;
+  color: #123f1d !important;
+}
+
+.reply-bubble {
+  background: #dce8d9 !important;
+}
+
+/* The separate photo-gallery section is intentionally not part of the page. */
+.gallery-section,
+.nav-links a[href="#gallery"] {
+  display: none !important;
+}
