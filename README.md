@@ -1,17 +1,16 @@
-# GRÜN — Arabic Shisha ＆ Silk Road Kissa
+# GRÜN Website
 
-A responsive, Japanese-first bilingual website concept for GRÜN in Kyoto. Use the 日本語 / EN switch in the navigation to toggle between Japanese and English.
+Japanese-first, English-option website for GRÜN Arabic Shisha & Silk Road Kissa in Kyoto.
 
-## Preview
+The design uses the uploaded GRÜN logo and Google Maps photos stored in the repository. The main page is in `index.html` and requires no build step.
 
-Open `index.html` in a browser. Google Fonts and Unsplash photography are loaded remotely.
+## Assets
+
+- `GRUN LOGO.png` — logo used in the header and footer
+- `Screenshot ...png` — venue photographs used in the hero, story, cards, and gallery
 
 ## Before publishing
 
-- Confirm the business details, opening hours, current menu, and reservation process with the shop.
-- The Google Maps listing is linked for directions and up-to-date shop information.
-- Replace sample Unsplash photography with approved images of the venue and confirm image usage rights.
-- The reservation area links to Google Maps; it does not transmit reservation requests.
-- Review menu wording, allergens, age restrictions, and local rules for shisha service.
-
-This is a static website prototype; shop-specific hours and contact details are intentionally not invented.
+- Verify opening hours and current menu directly with the shop.
+- Confirm the Google Maps listing and booking process.
+- Replace the simple reservation fields with a real reservation system if desired.
