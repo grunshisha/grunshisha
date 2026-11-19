@@ -1,4 +1,4 @@
-/* One fixed animated canvas sits behind the full page for a continuous background. */
+/* The animated canvas is the sole page background, mounted once behind all content. */
 html,
 body,
 #root {
@@ -20,8 +20,7 @@ body,
   display: none;
 }
 
-.grun-story,
-.story-map-section {
+.page-content {
   position: relative;
   z-index: 1;
 }
@@ -31,25 +30,14 @@ body,
   background-image: none !important;
 }
 
-/* Remove section-sized canvases: the page uses the single global canvas instead. */
-.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) {
-  display: contents;
-}
-
-.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) .gradient-motion-canvas {
-  display: none;
-}
-
-.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) .gradient-motion-content {
-  height: auto;
-}
-
+/* Remove colored section panels so the same gradient flows behind all content. */
 .story-philosophy,
 .story-visit,
 .story-craft,
 .craft-copy,
 .story-map-section {
   background: transparent !important;
+  background-color: transparent !important;
   background-image: none !important;
 }
 
