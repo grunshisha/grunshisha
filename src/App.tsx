@@ -1,7 +1,9 @@
 import { useState } from "react"
 import GrunStory from "@/components/ui/grun-story"
+import GradientMotionBackground from "@/components/ui/gradient-motion-background"
 import { LocationMap } from "@/components/ui/expanded-map"
-import "./app-story.css"
+import "@/app-story.css"
+import "@/global-gradient.css"
 
 export type Language = "ja" | "en"
 
@@ -9,6 +11,7 @@ export default function App() {
   const [language, setLanguage] = useState<Language>("en")
   return (
     <>
+      <GradientMotionBackground className="gradient-motion-background--global" />
       <GrunStory language={language} onLanguageChange={setLanguage} />
       <section className="story-map-section">
         <p>GRÜN · KYOTO</p>

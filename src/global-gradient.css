@@ -1,0 +1,70 @@
+/* One fixed animated canvas sits behind the full page for a continuous background. */
+html,
+body,
+#root {
+  min-height: 100%;
+  background: #174b2b;
+}
+
+.gradient-motion-background--global {
+  position: fixed !important;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  pointer-events: none;
+}
+
+.gradient-motion-background--global .gradient-motion-content {
+  display: none;
+}
+
+.grun-story,
+.story-map-section {
+  position: relative;
+  z-index: 1;
+}
+
+.grun-story {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Remove section-sized canvases: the page uses the single global canvas instead. */
+.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) {
+  display: contents;
+}
+
+.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) .gradient-motion-canvas {
+  display: none;
+}
+
+.grun-story > .gradient-motion-background:not(.gradient-motion-background--global) .gradient-motion-content {
+  height: auto;
+}
+
+.story-philosophy,
+.story-visit,
+.story-craft,
+.craft-copy,
+.story-map-section {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.story-craft {
+  color: #f5f2e9 !important;
+}
+
+.craft-copy .story-eyebrow {
+  color: #c9d6c1 !important;
+}
+
+.craft-copy .story-body {
+  color: #d7dfd1 !important;
+}
+
+.flavor-list li {
+  border-color: rgb(255 255 255 / 35%) !important;
+}
