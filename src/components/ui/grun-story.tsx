@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowRight, Instagram } from "lucide-react"
 import type { Language } from "@/App"
+import GradientMotionBackground from "./gradient-motion-background"
 import "./grun-story.css"
 
 const logo = new URL("../../../GRUN LOGO.png", import.meta.url).href
@@ -68,14 +69,16 @@ export default function GrunStory({ language, onLanguageChange }: { language: La
           <a className="hero-scroll" href="#philosophy">{t.scroll}<ArrowDown size={15} /></a>
         </section>
 
-        <section className="story-philosophy" id="philosophy">
-          <div className="story-section-inner philosophy-inner">
-            <p className="story-eyebrow">{t.philosophyLabel}</p>
-            <h1>{t.philosophyTitle}</h1>
-            <p className="story-body">{t.philosophyBody}</p>
-            <span className="story-rule" aria-hidden="true" />
-          </div>
-        </section>
+        <GradientMotionBackground>
+          <section className="story-philosophy" id="philosophy">
+            <div className="story-section-inner philosophy-inner">
+              <p className="story-eyebrow">{t.philosophyLabel}</p>
+              <h1>{t.philosophyTitle}</h1>
+              <p className="story-body">{t.philosophyBody}</p>
+              <span className="story-rule" aria-hidden="true" />
+            </div>
+          </section>
+        </GradientMotionBackground>
 
         <section className="story-craft" id="craft">
           <div className="craft-image" role="img" aria-label={language === "ja" ? "京都のGRÜNの店内" : "Inside GRÜN in Kyoto"} style={{ backgroundImage: `url("${lounge}")` }} />
@@ -89,15 +92,17 @@ export default function GrunStory({ language, onLanguageChange }: { language: La
           </div>
         </section>
 
-        <section className="story-visit" id="visit">
-          <p className="story-eyebrow">GRÜN · KYOTO</p>
-          <h2>{t.visitTitle}</h2>
-          <p className="story-body">{t.visitBody}</p>
-          <div className="story-actions">
-            <a href={mapsUrl} target="_blank" rel="noreferrer">{t.map}<ArrowRight size={15} /></a>
-            <a href={instagramUrl} target="_blank" rel="noreferrer"><Instagram size={15} />{t.instagram}</a>
-          </div>
-        </section>
+        <GradientMotionBackground>
+          <section className="story-visit" id="visit">
+            <p className="story-eyebrow">GRÜN · KYOTO</p>
+            <h2>{t.visitTitle}</h2>
+            <p className="story-body">{t.visitBody}</p>
+            <div className="story-actions">
+              <a href={mapsUrl} target="_blank" rel="noreferrer">{t.map}<ArrowRight size={15} /></a>
+              <a href={instagramUrl} target="_blank" rel="noreferrer"><Instagram size={15} />{t.instagram}</a>
+            </div>
+          </section>
+        </GradientMotionBackground>
       </main>
     </div>
   )
