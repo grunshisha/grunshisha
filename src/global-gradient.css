@@ -1,9 +1,13 @@
-/* The animated canvas is the sole page background, mounted once behind all content. */
+/* The animated canvas is the only non-photo page background. */
 html,
 body,
 #root {
   min-height: 100%;
-  background: #174b2b;
+  background: transparent !important;
+}
+
+body {
+  background-color: transparent !important;
 }
 
 .gradient-motion-background--global {
@@ -25,16 +29,13 @@ body,
   z-index: 1;
 }
 
-.grun-story {
-  background: transparent !important;
-  background-image: none !important;
-}
-
-/* Remove colored section panels so the same gradient flows behind all content. */
+/* Strip the old matte/grain texture and colored panels, allowing the single
+   animated gradient canvas to show through every text section. */
+.grun-story,
 .story-philosophy,
 .story-visit,
 .story-craft,
-.craft-copy,
+.story-craft .craft-copy,
 .story-map-section {
   background: transparent !important;
   background-color: transparent !important;
