@@ -1,7 +1,19 @@
-/* Language control and map footer for the new story-led home page. */
-.story-language-switch { position: absolute; z-index: 10; top: 27px; right: max(32px, calc((100vw - 1240px) / 2)); display: flex; gap: 4px; color: white; }
-.story-language-switch button { border: 1px solid rgb(255 255 255 / 45%); background: rgb(12 35 19 / 25%); color: inherit; padding: 7px 9px; font-size: 10px; letter-spacing: .08em; cursor: pointer; }
-.story-language-switch button[aria-pressed="true"] { background: rgb(255 255 255 / 19%); }
+/* Language control is grouped with navigation in the header to prevent overlap. */
+.story-header-actions { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 32px); }
+.story-language-switch { display: flex; flex: 0 0 auto; gap: 4px; color: white; }
+.story-language-switch button { border: 1px solid rgb(255 255 255 / 45%); background: rgb(12 35 19 / 45%); color: inherit; padding: 7px 9px; font-size: 10px; line-height: 1; white-space: nowrap; letter-spacing: .08em; cursor: pointer; }
+.story-language-switch button[aria-pressed="true"] { background: rgb(255 255 255 / 22%); }
 .story-map-section { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 64px 24px; background-color: #174b2b; color: #f5f2e9; }
 .story-map-section > p { margin: 0; font-size: 10px; letter-spacing: .22em; }
-@media (max-width: 700px) { .story-language-switch { top: 22px; right: 18px; } }
+@media (max-width: 700px) {
+  .story-header-actions { gap: 10px; }
+  .story-header nav { gap: 10px; font-size: 9px; }
+  .story-language-switch { gap: 3px; }
+  .story-language-switch button { padding: 7px 6px; font-size: 9px; }
+}
+@media (max-width: 390px) {
+  .story-header { width: calc(100% - 24px); }
+  .story-header-actions { gap: 6px; }
+  .story-header nav { gap: 7px; font-size: 8px; }
+  .story-language-switch button { padding: 6px 4px; font-size: 8px; }
+}

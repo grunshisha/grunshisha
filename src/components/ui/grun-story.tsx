@@ -36,7 +36,7 @@ const copy = {
   },
 } as const
 
-export default function GrunStory({ language }: { language: Language }) {
+export default function GrunStory({ language, onLanguageChange }: { language: Language; onLanguageChange: (language: Language) => void }) {
   const t = copy[language]
 
   return (
@@ -45,11 +45,17 @@ export default function GrunStory({ language }: { language: Language }) {
         <a href="#home" className="story-wordmark" aria-label="GRÜN home">
           <img src={logo} alt="GRÜN" />
         </a>
-        <nav aria-label="Main navigation">
-          <a href="#philosophy">{t.about}</a>
-          <a href="#craft">{t.craft}</a>
-          <a href="#visit">{t.visit}</a>
-        </nav>
+        <div className="story-header-actions">
+          <nav aria-label="Main navigation">
+            <a href="#philosophy">{t.about}</a>
+            <a href="#craft">{t.craft}</a>
+            <a href="#visit">{t.visit}</a>
+          </nav>
+          <div className="story-language-switch" aria-label="Language">
+            <button aria-pressed={language === "en"} onClick={() => onLanguageChange("en")}>EN</button>
+            <button aria-pressed={language === "ja"} onClick={() => onLanguageChange("ja")}>日本語</button>
+          </div>
+        </div>
       </header>
 
       <main>
