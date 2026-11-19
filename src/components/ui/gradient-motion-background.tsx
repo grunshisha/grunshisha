@@ -143,7 +143,7 @@ export default function GradientMotionBackground({ className = "", children }: G
       gl.uniform2f(locs.resolution, canvas.width, canvas.height)
       gl.uniform1f(locs.time, timestamp * 0.001 * 2)
       gl.uniform1f(locs.grain, 0.3)
-      gl.uniform3f(locs.bg, ...bg)
+      gl.uniform3f(locs.bg, bg[0], bg[1], bg[2])
       gl.uniform3fv(locs.colors, new Float32Array(colors.slice(0, 4).flatMap(hexToRgb)))
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       frame = requestAnimationFrame(render)
