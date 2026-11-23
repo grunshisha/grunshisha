@@ -1,7 +1,6 @@
 import { useState } from "react"
 import GrunStory from "@/components/ui/grun-story"
 import GradientMotionBackground from "@/components/ui/gradient-motion-background"
-import { LocationMap } from "@/components/ui/expanded-map"
 import "@/app-story.css"
 import "@/global-gradient.css"
 
@@ -20,7 +19,14 @@ export default function App() {
         <GrunStory language={language} onLanguageChange={setLanguage} />
         <section className="story-map-section">
           <p>GRÜN · KYOTO</p>
-          <LocationMap location="GRÜN Arabic Shisha & Silk Road Kissa · Kyoto" latitude={35.0037637} longitude={135.7713448} zoom={15} tileProvider="carto-light" defaultExpanded />
+          <iframe
+            title="Map showing GRÜN Arabic Shisha & Silk Road Kissa in Kyoto"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=135.755%2C34.995%2C135.788%2C35.012&layer=mapnik&marker=35.0037637%2C135.7713448"
+            width="100%"
+            height="420"
+            loading="lazy"
+            style={{ maxWidth: 900, border: 0, borderRadius: 16 }}
+          />
         </section>
       </div>
     </>
