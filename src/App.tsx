@@ -20,7 +20,7 @@ export default function App() {
         <GrunStory language={language} onLanguageChange={setLanguage} />
         <section className="story-map-section">
           <p>GRÜN · KYOTO</p>
-          <LocationMap location="GRÜN Arabic Shisha & Silk Road Kissa · Kyoto" latitude={35.0037637} longitude={135.7713448} zoom={15} tileProvider="carto-light" />
+          <LocationMap location="GRÜN Arabic Shisha & Silk Road Kissa · Kyoto" latitude={35.0037637} longitude={135.7713448} zoom={15} tileProvider="carto-light" defaultExpanded />
         </section>
       </div>
     </>
