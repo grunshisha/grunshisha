@@ -5,7 +5,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react"
-import { useEffect, useMemo, useRef, useState, type MouseEvent, type KeyboardEvent } from "react"
+import { useMemo, useRef, useState, type MouseEvent, type KeyboardEvent } from "react"
 
 interface LocationMapProps {
   /** Location name to display */
@@ -62,7 +62,6 @@ export function LocationMap({
 }: LocationMapProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
-  const [tilesLoaded, setTilesLoaded] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -87,21 +86,6 @@ export function LocationMap({
       }
     })
   }, [latitude, longitude, zoom, tileProvider])
-
-  useEffect(() => {
-    let loadedCount = 0
-    let cancelled = false
-    setTilesLoaded(false)
-    tiles.forEach((tile) => {
-      const image = new Image()
-      image.onload = image.onerror = () => {
-        loadedCount += 1
-        if (!cancelled && loadedCount === tiles.length) setTilesLoaded(true)
-      }
-      image.src = tile.url
-    })
-    return () => { cancelled = true }
-  }, [tiles])
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return
@@ -138,57 +122,51 @@ export function LocationMap({
       onClick={toggleExpanded}
     >
       <motion.div
-        className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#f4f3ed] text-[#173c27] shadow-xl"
+        className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#e5e7df] text-[#173c27] shadow-xl"
         style={{ rotateX: springRotateX, rotateY: springRotateY, transformStyle: "preserve-3d" }}
         animate={{ width: isExpanded ? 360 : 240, height: isExpanded ? 280 : 140 }}
         transition={{ type: "spring", stiffness: 400, damping: 35 }}
       >
-        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-br from-black/5 via-transparent to-black/20" />
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              className="pointer-events-none absolute inset-0"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute left-1/2 top-1/2 h-[768px] w-[768px] -translate-x-1/2 -translate-y-1/2">
-                  {tiles.map((tile, index) => (
-                    <motion.div
-                      key={tile.url}
-                      className="absolute h-64 w-64"
-                      style={{ left: `${(tile.offsetX + 1) * 256}px`, top: `${(tile.offsetY + 1) * 256}px` }}
-                      initial={{ opacity: 0 }} animate={{ opacity: tilesLoaded ? 1 : 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                    >
-                      <img src={tile.url} alt="" width={256} height={256} className="h-full w-full" draggable={false} />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-              {!tilesLoaded && <div className="absolute inset-0 animate-pulse bg-[#e5e7df]" />}
-              <motion.div
-                className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-                initial={{ scale: 0, y: -20 }} animate={{ scale: 1, y: 0 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20, delay: 0.3 }}
+        {/* Keep real map imagery visible in both the compact preview and expanded card. */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-1/2 h-[768px] w-[768px] -translate-x-1/2 -translate-y-1/2">
+            {tiles.map((tile) => (
+              <div
+                key={tile.url}
+                className="absolute h-64 w-64"
+                style={{ left: `${(tile.offsetX + 1) * 256}px`, top: `${(tile.offsetY + 1) * 256}px` }}
               >
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="drop-shadow-lg" aria-hidden="true">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399" />
-                  <circle cx="12" cy="9" r="2.5" fill="#f4f3ed" />
-                </svg>
-              </motion.div>
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#f4f3ed]/80 via-transparent to-transparent" />
-              <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#f4f3ed]/50 via-transparent to-transparent" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <img src={tile.url} alt="" width={256} height={256} className="h-full w-full" draggable={false} />
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <motion.div className="absolute inset-0 opacity-[0.04]" animate={{ opacity: isExpanded ? 0 : 0.04 }} transition={{ duration: 0.3 }} aria-hidden="true">
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-black/5 via-transparent to-black/20" />
+        <motion.div className="pointer-events-none absolute inset-0 z-10 opacity-[0.04]" animate={{ opacity: isExpanded ? 0 : 0.04 }} transition={{ duration: 0.3 }} aria-hidden="true">
           <svg width="100%" height="100%" className="absolute inset-0">
             <defs><pattern id="map-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" /></pattern></defs>
             <rect width="100%" height="100%" fill="url(#map-grid)" />
           </svg>
         </motion.div>
+
+        <motion.div
+          className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+          initial={{ scale: 0, y: -20 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20, delay: 0.3 }}
+        >
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="drop-shadow-lg" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399" />
+            <circle cx="12" cy="9" r="2.5" fill="#f4f3ed" />
+          </svg>
+        </motion.div>
+        {isExpanded && (
+          <>
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#f4f3ed]/50 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-[#f4f3ed]/80 to-transparent" />
+          </>
+        )}
 
         <div className="relative z-20 flex h-full flex-col justify-between p-5">
           <motion.svg
@@ -204,7 +182,7 @@ export function LocationMap({
             <motion.h3 className="text-sm font-medium tracking-tight" animate={{ x: isHovered ? 4 : 0 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>{location}</motion.h3>
             <AnimatePresence>
               {isExpanded && (
-                <motion.p className="font-mono text-xs text-[#526458]" initial={{ opacity: 0, y: -10, height: 0 }} animate={{ opacity: 1, y: 0, height: "auto" }} exit={{ opacity: 0, y: -10, height: 0 }} transition={{ duration: 0.25 }}>
+                <motion.p className="font-mono text-xs text-[#526458]" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
                   {coordinates}
                 </motion.p>
               )}
